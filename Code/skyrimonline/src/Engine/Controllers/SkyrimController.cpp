@@ -26,7 +26,7 @@ namespace Logic
 			{
 				uint32_t deltaClock = clock() - m_cachedClock;
 				m_cachedClock = clock();
-
+				
 				m_world.Update();
 				//m_test.Update();
 				m_player.Update(deltaClock);

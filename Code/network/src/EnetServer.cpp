@@ -187,3 +187,8 @@ void EnetServer::SendReliableAll(Packet* apMessage)
 		enet_host_broadcast(m_pHost, 0, pPacket);
 	}
 }
+
+_ENetPeerState EnetServer::ConnectionStatus()
+{
+	return m_pServer->state;
+}

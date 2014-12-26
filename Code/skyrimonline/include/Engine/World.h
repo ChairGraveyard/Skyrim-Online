@@ -16,6 +16,8 @@ public:
 	World();
 	~World();
 
+	void Connect();
+
 	void Send(Packet* apPacket);
 	void SendReliable(Packet* apPacket);
 

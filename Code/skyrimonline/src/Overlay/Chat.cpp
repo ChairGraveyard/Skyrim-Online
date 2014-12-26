@@ -24,20 +24,20 @@ namespace Logic
 
 		}
 
-		void Chat::SetVisibility(bool aForceHide)
+		void Chat::SetVisibility(bool aHide)
 		{
 			if (m_pEdit == nullptr || m_pList == nullptr)
 				return;
 
-			if (aForceHide == false && m_pEdit->isVisible() == false && m_pList->isVisible() == false)
-			{
-				m_pEdit->setVisible(true);
-				m_pList->setVisible(true);
-			}
-			else
+			if (aHide == false)
 			{
 				m_pEdit->setVisible(false);
 				m_pList->setVisible(false);
+			}
+			else
+			{
+				m_pEdit->setVisible(true);
+				m_pList->setVisible(true);
 			}
 		}
 
@@ -60,6 +60,11 @@ namespace Logic
 		bool Chat::IsTyping() const
 		{
 			return MyGUI::InputManager::getInstance().isFocusKey();
+		}
+
+		bool Chat::IsVisible() const
+		{
+			return m_pEdit->isVisible() && m_pList->isVisible();
 		}
 
 		void Chat::AddChatMessage(const MyGUI::UString& acString)

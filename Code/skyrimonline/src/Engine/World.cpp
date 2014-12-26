@@ -11,7 +11,7 @@
 
 World::World()
 {
-	Connect("127.0.0.1", 10578);
+	this->Connect();
 }
 
 World::~World()
@@ -20,6 +20,8 @@ World::~World()
 
 void World::OnUpdate()
 {
+	if (EnetServer::ConnectionStatus() == 0)
+		this->Connect();
 }
 
 void World::OnConnection(uint16_t aConnectionId)
@@ -29,7 +31,8 @@ void World::OnConnection(uint16_t aConnectionId)
 
 void World::OnDisconnection(uint16_t aConnectionId)
 {
-	Logic::Engine::TheController->GetUI()->Debug("Connection to the server lost !");
+	//Logic::Engine::TheController->GetUI()->Debug("Connection to the server lost !");
+	Logic::Overlay::TheChat->AddChatMessage("Connection to the server lost !");
 }
 
 void World::OnConsume(uint16_t aConnectionId, ReadBuffer* pBuffer)
@@ -38,6 +41,11 @@ void World::OnConsume(uint16_t aConnectionId, ReadBuffer* pBuffer)
 	pBuffer->Read_uint16(opcode);
 
 	m_handler.HandleBuffer(pBuffer, opcode, 0);
+}
+
+void World::Connect()
+{
+	EnetServer::Connect("127.0.0.1", 10578);
 }
 
 void World::Send(Packet* apPacket)
