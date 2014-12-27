@@ -188,7 +188,7 @@ void EnetServer::SendReliableAll(Packet* apMessage)
 	}
 }
 
-ENetPeerState EnetServer::GetPeerState()
+ENetPeerState EnetServer::GetPeerState() const
 {
 	return m_pServer->state;
 }

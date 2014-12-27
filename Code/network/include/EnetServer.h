@@ -129,7 +129,7 @@ public:
 	* Return connection status of the client.
 	*
 	*/
-	ENetPeerState GetPeerState();
+	ENetPeerState GetPeerState() const;
 
 	TaskManager* GetLightTaskManager() { return &m_lightTaskManager; }
 	TaskManager* GetMediumTaskManager() { return &m_mediumTaskManager; }
