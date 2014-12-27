@@ -5,10 +5,9 @@
 void HandleCliGame_ChatRecv(const Messages::CliGame_ChatRecv& aMsg)
 {
 	Player* pPlayer = g_pServer->GetPlayer(aMsg.connectionId);
+
 	if (!pPlayer)
-	{
 		return;
-	}
 
 	LOG(INFO) << "event=player_chat connection_id=" << aMsg.connectionId << " name=" << pPlayer->GetName() << " message=\"" << aMsg.message << "\"";
 

@@ -72,14 +72,25 @@ uint32_t Player::GetHorse() const
 void HandleCliGame_HelloRecv(const Messages::CliGame_HelloRecv& aMsg)
 {
 	Player* pPlayer = g_pServer->GetPlayer(aMsg.connectionId);
+
 	if (!pPlayer)
-	{
 		return;
+
+	std::list<Player*> m_pPlayerList = g_pServer->GetPlayers();
+	std::string pPlayerName = aMsg.name;
+
+	for (Player* p : m_pPlayerList)
+	{
+		if (p->GetName().compare(aMsg.name) == 0)
+		{
+			pPlayerName = aMsg.name + "(" + std::to_string(aMsg.connectionId + 1) + ")";
+			break;
+		}
 	}
 
-	LOG(INFO) << "event=hello connection_id=" <<  aMsg.connectionId << " name=" << aMsg.name;
+	LOG(INFO) << "event=hello connection_id=" << aMsg.connectionId << " name=" << pPlayerName;
 
-	pPlayer->SetName(aMsg.name);
+	pPlayer->SetName(pPlayerName);
 
 	Messages::GameCli_HelloSend* pMessage = new Messages::GameCli_HelloSend;
 	pMessage->version = 0;
