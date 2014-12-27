@@ -62,6 +62,7 @@ namespace Logic
 		void Chat::AddChatMessage(const MyGUI::UString& acString)
 		{
 			m_pList->addItem(acString);
+			m_pList->beginToItemLast();
 		}
 
 		void Chat::SendChatMessage()
