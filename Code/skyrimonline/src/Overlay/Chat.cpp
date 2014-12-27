@@ -24,21 +24,13 @@ namespace Logic
 
 		}
 
-		void Chat::SetVisibility(bool aHide)
+		void Chat::SetVisible(bool aHide)
 		{
 			if (m_pEdit == nullptr || m_pList == nullptr)
 				return;
 
-			if (aHide == false)
-			{
-				m_pEdit->setVisible(false);
-				m_pList->setVisible(false);
-			}
-			else
-			{
-				m_pEdit->setVisible(true);
-				m_pList->setVisible(true);
-			}
+			m_pEdit->setVisible(aHide);
+			m_pList->setVisible(aHide);
 		}
 
 		void Chat::SetTyping(bool aForceHide)

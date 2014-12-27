@@ -20,7 +20,7 @@ namespace Logic
 
 			~Chat();
 
-			void SetVisibility(bool aHide);
+			void SetVisible(bool aHide);
 
 			void SetTyping(bool aForceHide = false);
 			bool IsTyping() const;

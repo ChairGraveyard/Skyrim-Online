@@ -188,7 +188,7 @@ void EnetServer::SendReliableAll(Packet* apMessage)
 	}
 }
 
-_ENetPeerState EnetServer::ConnectionStatus()
+ENetPeerState EnetServer::GetPeerState()
 {
 	return m_pServer->state;
 }
