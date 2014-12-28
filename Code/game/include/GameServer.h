@@ -21,7 +21,7 @@ public:
 	void OnConsume(uint16_t aConnectionId, ReadBuffer* pBuffer);
 	
 	Player* GetPlayer(uint16_t aConnectionId) const;
-	std::list<Player*> GetPlayers();
+	
 	World* GetWorld();
 	
 private:

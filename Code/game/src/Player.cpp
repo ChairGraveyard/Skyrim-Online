@@ -76,7 +76,7 @@ void HandleCliGame_HelloRecv(const Messages::CliGame_HelloRecv& aMsg)
 	if (!pPlayer)
 		return;
 
-	std::list<Player*> m_pPlayerList = g_pServer->GetPlayers();
+	std::list<Player*> m_pPlayerList = g_pServer->GetWorld()->GetPlayers();
 	std::string pPlayerName = aMsg.name;
 
 	for (Player* p : m_pPlayerList)

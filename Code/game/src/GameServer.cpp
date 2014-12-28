@@ -60,21 +60,6 @@ Player* GameServer::GetPlayer(uint16_t aConnectionId) const
 	return m_players[aConnectionId];
 }
 
-std::list<Player*> GameServer::GetPlayers()
-{
-	std::list<Player*> m_pPlayerList;
-
-	for (Player* p : m_players)
-	{
-		if (p == NULL)
-			continue;
-
-		m_pPlayerList.push_back(p);
-	}
-
-	return m_pPlayerList;
-}
-
 World* GameServer::GetWorld()
 {
 	return &m_world;
