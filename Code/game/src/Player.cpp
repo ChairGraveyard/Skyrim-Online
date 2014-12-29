@@ -74,7 +74,9 @@ void HandleCliGame_HelloRecv(const Messages::CliGame_HelloRecv& aMsg)
 	Player* pPlayer = g_pServer->GetPlayer(aMsg.connectionId);
 
 	if (!pPlayer)
+	{
 		return;
+	}
 
 	std::list<Player*> m_pPlayerList = g_pServer->GetWorld()->GetPlayers();
 	std::string pPlayerName = aMsg.name;
@@ -83,7 +85,7 @@ void HandleCliGame_HelloRecv(const Messages::CliGame_HelloRecv& aMsg)
 	{
 		if (p->GetName().compare(aMsg.name) == 0)
 		{
-			pPlayerName = aMsg.name + "(" + std::to_string(aMsg.connectionId + 1) + ")";
+			pPlayerName = aMsg.name + "(" + std::to_string(aMsg.connectionId) + ")";
 			break;
 		}
 	}
