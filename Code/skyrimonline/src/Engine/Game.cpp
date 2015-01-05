@@ -1,12 +1,12 @@
 #include <EnetServer.h>
 #include <Engine\Game.h>
-#include <time.h>
 
 namespace Logic
 { 
 	namespace Engine
 	{
 		Interfaces::IController* TheController = nullptr;
+		World* m_world;
 
 		void InitializeGame()
 		{
@@ -36,18 +36,19 @@ namespace Logic
 			TheController = new Logic::Engine::Controllers::SkyrimController();
 
 			boost::thread ConnectionThread(Logic::Engine::ConnectionUpdate);
+			m_world = TheController->GetWorld();
 		}
 
 		void Update()
 		{
 			TheController->Update();
 		}
-
+		
 		void ConnectionUpdate()
 		{
-			while (true)
+			while (m_world->GetPeerState() > 0 && m_world->GetPeerState() < 6)
 			{
-				TheController->GetWorld()->Update();
+				m_world->Update();
 
 				boost::this_thread::sleep(boost::posix_time::milliseconds(1));
 			}
