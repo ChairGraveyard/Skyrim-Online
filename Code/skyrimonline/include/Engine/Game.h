@@ -19,5 +19,6 @@ namespace Logic
 	{
 		void InitializeGame();
 		void Update();
+		void ConnectionUpdate();
 	}
 }

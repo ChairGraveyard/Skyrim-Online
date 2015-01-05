@@ -7,6 +7,8 @@
 
 #include <GameCli_Handler.h>
 
+#include <Engine\World.h>
+
 namespace Logic
 {
 	namespace Engine
@@ -49,6 +51,8 @@ namespace Logic
 
 				virtual void HandlePlayerAdd(const Messages::GameCli_PlayerAddRecv& acMsg) = 0;
 				virtual void HandlePlayerRemove(const Messages::GameCli_PlayerRemoveRecv& acMsg) = 0;
+
+				virtual World* GetWorld() = 0;
 			};
 		}
 

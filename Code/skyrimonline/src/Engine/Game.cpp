@@ -1,5 +1,6 @@
 #include <EnetServer.h>
 #include <Engine\Game.h>
+#include <time.h>
 
 namespace Logic
 { 
@@ -33,11 +34,23 @@ namespace Logic
 			Logic::Overlay::TheChat = new Logic::Overlay::Chat(Logic::Overlay::TheGUI->getGUI()); // Initialize the chat.
 
 			TheController = new Logic::Engine::Controllers::SkyrimController();
+
+			boost::thread ConnectionThread(Logic::Engine::ConnectionUpdate);
 		}
 
 		void Update()
 		{
 			TheController->Update();
+		}
+
+		void ConnectionUpdate()
+		{
+			while (true)
+			{
+				TheController->GetWorld()->Update();
+
+				boost::this_thread::sleep(boost::posix_time::milliseconds(1));
+			}
 		}
 	}
 }

@@ -27,7 +27,6 @@ namespace Logic
 				uint32_t deltaClock = clock() - m_cachedClock;
 				m_cachedClock = clock();
 				
-				m_world.Update();
 				//m_test.Update();
 				m_player.Update(deltaClock);
 
@@ -95,6 +94,11 @@ namespace Logic
 				m_activeIds.remove(acMsg.playerId);
 				delete m_pPlayers[acMsg.playerId];
 				m_pPlayers[acMsg.playerId] = nullptr;
+			}
+
+			World* SkyrimController::GetWorld()
+			{
+				return &m_world;
 			}
 		}
 	}
