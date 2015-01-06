@@ -79,8 +79,6 @@ namespace Logic
 				void HandlePlayerAdd(const Messages::GameCli_PlayerAddRecv& acMsg);
 				void HandlePlayerRemove(const Messages::GameCli_PlayerRemoveRecv& acMsg);
 
-				World* GetWorld();
-
 			private:
 
 				SkyrimUserInterface m_userInterface;

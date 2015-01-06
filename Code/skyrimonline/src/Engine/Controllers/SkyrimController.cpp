@@ -95,11 +95,6 @@ namespace Logic
 				delete m_pPlayers[acMsg.playerId];
 				m_pPlayers[acMsg.playerId] = nullptr;
 			}
-
-			World* SkyrimController::GetWorld()
-			{
-				return &m_world;
-			}
 		}
 	}
 }

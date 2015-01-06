@@ -6,7 +6,6 @@ namespace Logic
 	namespace Engine
 	{
 		Interfaces::IController* TheController = nullptr;
-		World* m_world;
 
 		void InitializeGame()
 		{
@@ -34,24 +33,11 @@ namespace Logic
 			Logic::Overlay::TheChat = new Logic::Overlay::Chat(Logic::Overlay::TheGUI->getGUI()); // Initialize the chat.
 
 			TheController = new Logic::Engine::Controllers::SkyrimController();
-
-			boost::thread ConnectionThread(Logic::Engine::ConnectionUpdate);
-			m_world = TheController->GetWorld();
 		}
 
 		void Update()
 		{
 			TheController->Update();
-		}
-		
-		void ConnectionUpdate()
-		{
-			while (m_world->GetPeerState() > 0 && m_world->GetPeerState() < 6)
-			{
-				m_world->Update();
-
-				boost::this_thread::sleep(boost::posix_time::milliseconds(1));
-			}
 		}
 	}
 }

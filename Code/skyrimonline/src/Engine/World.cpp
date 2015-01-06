@@ -20,8 +20,7 @@ World::~World()
 
 void World::OnUpdate()
 {
-	if (EnetServer::GetPeerState() == 0)
-		Connect();
+
 }
 
 void World::OnConnection(uint16_t aConnectionId)

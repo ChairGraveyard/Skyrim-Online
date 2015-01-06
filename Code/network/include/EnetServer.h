@@ -123,14 +123,6 @@ public:
 	*/
 	void SendAll(Packet* apMessage);
 
-	/**
-	* @brief Return connection status of the client.
-	*
-	* Return connection status of the client.
-	*
-	*/
-	ENetPeerState GetPeerState() const;
-
 	TaskManager* GetLightTaskManager() { return &m_lightTaskManager; }
 	TaskManager* GetMediumTaskManager() { return &m_mediumTaskManager; }
 	TaskManager* GetHeavyTaskManager() { return &m_heavyTaskManager; }
