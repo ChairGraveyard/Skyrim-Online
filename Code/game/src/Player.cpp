@@ -129,6 +129,7 @@ void HandleCliGame_PositionRecv(const Messages::CliGame_PositionRecv& aMsg)
 	pPlayer->SetMovement(aMsg.movement);
 	g_pServer->GetWorld()->UpdateMovement(pPlayer);
 
-	LOG(INFO) << "event=position x=" << aMsg.movement.pos.x << " y=" << aMsg.movement.pos.y << " z=" << aMsg.movement.pos.z
-		<< " rot=" << aMsg.movement.rot << " velocity=" << aMsg.movement.velocity << " animation=" << aMsg.movement.animation;
+	LOG(INFO) << std::setprecision(2) << std::fixed << "Player ID " << pPlayer->GetId() << " event=position x=" << aMsg.movement.pos.x << " y=" << aMsg.movement.pos.y << " z=" << aMsg.movement.pos.z
+		<< " rotX=" << aMsg.movement.rotX << " rotY=" << aMsg.movement.rotY << " rotZ=" << aMsg.movement.rotZ << " velocity=" << aMsg.movement.velocity << " dir=" << aMsg.movement.dir
+		<< " animationFlags04=" << aMsg.movement.animationFlags04 << " animationFlags08=" << aMsg.movement.animationFlags08;
 }

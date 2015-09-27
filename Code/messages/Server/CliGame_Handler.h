@@ -59,24 +59,32 @@ namespace Messages
         void Deserialize(ReadBuffer* pBuffer)
         {
             pos.Deserialize(pBuffer);
-            pBuffer->Read_float(rot);
+			pBuffer->Read_float(rotX);
+			pBuffer->Read_float(rotY);
+			pBuffer->Read_float(rotZ);
             pBuffer->Read_float(velocity);
-            pBuffer->Read_uint16(animation);
+			pBuffer->Read_float(dir);
+			pBuffer->Read_uint16(animationFlags04);
+			pBuffer->Read_uint16(animationFlags08);
             pBuffer->Read_uint32(time);
         }
         void Serialize(WriteBuffer* pBuffer)
         {
             pos.Serialize(pBuffer);
-            pBuffer->Write_float(rot);
-            pBuffer->Write_float(velocity);
-            pBuffer->Write_uint16(animation);
+			pBuffer->Write_float(rotX);
+			pBuffer->Write_float(rotY);
+			pBuffer->Write_float(rotZ);
+			pBuffer->Write_float(velocity);
+			pBuffer->Write_float(dir);
+			pBuffer->Write_uint16(animationFlags04);
+			pBuffer->Write_uint16(animationFlags08);
             pBuffer->Write_uint32(time);
         }
     
         Vector3 pos;
-        float rot;
-        float velocity;
-        uint16_t animation;
+        float rotX, rotY, rotZ;
+        float velocity, dir;
+		uint16_t animationFlags04, animationFlags08;
         uint32_t time;
     };
     

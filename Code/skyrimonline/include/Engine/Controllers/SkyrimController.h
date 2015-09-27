@@ -52,7 +52,7 @@ namespace Logic
 				Actor* m_pCharacter;
 				Actor* m_pHorse;
 				clock_t m_positionTimer;
-				bool m_localPlayer;
+				bool m_localPlayer, m_isWalking, m_isSkeaning;
 
 				Messages::Movement m_futurePosition;
 			};

@@ -10,6 +10,8 @@ Build/Bin/*.exp
 Build/Bin/*.idb
 Build/Bin/*.pdb
 Build/Bin/server/*.pdb
+Build/Bin/server/*.idb
+Build/Bin/server/*.ilk
 Build/Bin/logs/
 Build/Bin/server/logs/
 Build/gsl

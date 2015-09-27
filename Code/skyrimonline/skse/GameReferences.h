@@ -279,7 +279,8 @@ public:
 	// this forced the addition of 4 useless padding bytes
 	// current and future versions store flags as two UInt32s
 
-	enum {
+	enum 
+	{
 		kState_Running = 0x40,
 		kState_Walking = 0x80,
 		kState_Sprinting = 0x100,

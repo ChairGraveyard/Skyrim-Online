@@ -6,7 +6,7 @@
 
 #include <Engine\Interfaces\IController.h>
 #include <Overlay\Chat.h>
-
+#include <exception>
 #include "easylogging++.h"
 
 World::World()
@@ -43,7 +43,7 @@ void World::OnConsume(uint16_t aConnectionId, ReadBuffer* pBuffer)
 
 void World::Connect()
 {
-	EnetServer::Connect("127.0.0.1", 10578);
+	EnetServer::Connect("192.168.0.2", 10578);
 }
 
 void World::Send(Packet* apPacket)
@@ -53,7 +53,14 @@ void World::Send(Packet* apPacket)
 
 void World::SendReliable(Packet* apPacket)
 {
-	EnetServer::SendReliable(0, apPacket);
+	try
+	{
+		EnetServer::SendReliable(0, apPacket);
+	}
+	catch (std::exception& e)
+	{
+		LOG(ERROR) << e.what();
+	}
 }
 
 void World::SendHello(const std::string& acPlayerName)
@@ -85,6 +92,7 @@ void HandleGameCli_ChatRecv(const Messages::GameCli_ChatRecv& aMsg)
 void HandleGameCli_PositionRecv(const Messages::GameCli_PositionRecv& aMsg)
 {
 	Logic::Engine::Interfaces::IPlayer* pPlayer = Logic::Engine::TheController->GetPlayerById(aMsg.playerId);
+
 	if (!pPlayer)
 	{
 		LOG(ERROR) << "event=position player_id=" << aMsg.playerId << " message=\"Player is null\"";
